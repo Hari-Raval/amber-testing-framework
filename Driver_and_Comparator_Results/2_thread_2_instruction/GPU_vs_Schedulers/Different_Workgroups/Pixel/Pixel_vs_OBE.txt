@@ -1,0 +1,60 @@
+-------------------------------------------
+Tests that differ between 2_thread_2_instruction/Pixel/simple_final_results-2020-05-04.csv and 2_thread_2_instruction/schedulers/OBE_results.csv
+-------------------------------------------
+   -- Test Case: 0 (No saturation (same subgroup)
+   -- Test Case: 0 (Chunking Saturation)
+   -- Test Case: 1 (No saturation (same subgroup)
+   -- Test Case: 1 (Chunking Saturation)
+   -- Test Case: 2 (No saturation (same subgroup)
+   -- Test Case: 2 (Round Robin Saturation)
+   -- Test Case: 3 (No saturation (same subgroup)
+   -- Test Case: 3 (Round Robin Saturation)
+   -- Test Case: 3 (Chunking Saturation)
+   -- Test Case: 4 (No saturation (same subgroup)
+   -- Test Case: 4 (Round Robin Saturation)
+   -- Test Case: 5 (No saturation (same subgroup)
+   -- Test Case: 5 (Round Robin Saturation)
+   -- Test Case: 5 (Chunking Saturation)
+   -- Test Case: 6 (No saturation (same subgroup)
+   -- Test Case: 6 (Round Robin Saturation)
+   -- Test Case: 6 (Chunking Saturation)
+   -- Test Case: 7 (No saturation (same subgroup)
+   -- Test Case: 7 (Round Robin Saturation)
+
+-------------------------------------------
+Tests that 2_thread_2_instruction/Pixel/simple_final_results-2020-05-04.csv passes and 2_thread_2_instruction/schedulers/OBE_results.csv fails
+-------------------------------------------
+   -- Test Case: 0 (No saturation (same subgroup)
+   -- Test Case: 0 (Chunking Saturation)
+   -- Test Case: 1 (No saturation (same subgroup)
+   -- Test Case: 1 (Chunking Saturation)
+   -- Test Case: 2 (No saturation (same subgroup)
+   -- Test Case: 2 (Round Robin Saturation)
+   -- Test Case: 3 (No saturation (same subgroup)
+   -- Test Case: 3 (Round Robin Saturation)
+   -- Test Case: 3 (Chunking Saturation)
+   -- Test Case: 4 (No saturation (same subgroup)
+   -- Test Case: 4 (Round Robin Saturation)
+   -- Test Case: 5 (No saturation (same subgroup)
+   -- Test Case: 5 (Round Robin Saturation)
+   -- Test Case: 5 (Chunking Saturation)
+   -- Test Case: 6 (No saturation (same subgroup)
+   -- Test Case: 6 (Round Robin Saturation)
+   -- Test Case: 6 (Chunking Saturation)
+   -- Test Case: 7 (No saturation (same subgroup)
+   -- Test Case: 7 (Round Robin Saturation)
+
+-------------------------------------------
+Tests that 2_thread_2_instruction/Pixel/simple_final_results-2020-05-04.csv fails and 2_thread_2_instruction/schedulers/OBE_results.csv passes
+-------------------------------------------
+   NONE
+-------------------------------------------
+Tests that both 2_thread_2_instruction/Pixel/simple_final_results-2020-05-04.csv and 2_thread_2_instruction/schedulers/OBE_results.csv fail
+-------------------------------------------
+   -- Test Case: 0 (Round Robin Saturation)
+   -- Test Case: 1 (Round Robin Saturation)
+   -- Test Case: 2 (Chunking Saturation)
+   -- Test Case: 4 (Chunking Saturation)
+   -- Test Case: 7 (Chunking Saturation)
+
+

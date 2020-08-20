@@ -1,0 +1,23 @@
+-------------------------------------------
+Tests that differ between 2_thread_2_instruction/Nvidia/nvidia_simple_results-2020-04-20.csv and 2_thread_2_instruction/schedulers/STRONG_FAIR_results.csv
+-------------------------------------------
+   -- Test Case: 2 (Chunking Saturation Result)
+   -- Test Case: 4 (Chunking Saturation Result)
+   -- Test Case: 7 (Chunking Saturation Result)
+
+-------------------------------------------
+Tests that 2_thread_2_instruction/Nvidia/nvidia_simple_results-2020-04-20.csv passes and 2_thread_2_instruction/schedulers/STRONG_FAIR_results.csv fails
+-------------------------------------------
+   NONE
+-------------------------------------------
+Tests that 2_thread_2_instruction/Nvidia/nvidia_simple_results-2020-04-20.csv fails and 2_thread_2_instruction/schedulers/STRONG_FAIR_results.csv passes
+-------------------------------------------
+   -- Test Case: 2 (Chunking Saturation Result)
+   -- Test Case: 4 (Chunking Saturation Result)
+   -- Test Case: 7 (Chunking Saturation Result)
+
+-------------------------------------------
+Tests that both 2_thread_2_instruction/Nvidia/nvidia_simple_results-2020-04-20.csv and 2_thread_2_instruction/schedulers/STRONG_FAIR_results.csv fail
+-------------------------------------------
+   NONE
+

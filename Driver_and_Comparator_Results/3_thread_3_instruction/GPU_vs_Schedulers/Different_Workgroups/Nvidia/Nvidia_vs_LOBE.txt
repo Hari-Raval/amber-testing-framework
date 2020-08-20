@@ -1,0 +1,89 @@
+-------------------------------------------
+Tests that differ between 3_thread_3_instruction/Nvidia/nvidia_simple_results-2020-04-20.csv and 3_thread_3_instruction/schedulers/LOBE_results.csv
+-------------------------------------------
+   -- Test Case: 0 (No saturation Result)
+   -- Test Case: 0 (Round Robin Saturation Result)
+   -- Test Case: 1 (No saturation Result)
+   -- Test Case: 1 (Round Robin Saturation Result)
+   -- Test Case: 2 (No saturation Result)
+   -- Test Case: 2 (Round Robin Saturation Result)
+   -- Test Case: 4 (No saturation Result)
+   -- Test Case: 4 (Round Robin Saturation Result)
+   -- Test Case: 4 (Chunking Saturation Result)
+   -- Test Case: 5 (No saturation Result)
+   -- Test Case: 5 (Round Robin Saturation Result)
+   -- Test Case: 6 (No saturation Result)
+   -- Test Case: 6 (Round Robin Saturation Result)
+   -- Test Case: 8 (No saturation Result)
+   -- Test Case: 8 (Round Robin Saturation Result)
+   -- Test Case: 9 (No saturation Result)
+   -- Test Case: 9 (Round Robin Saturation Result)
+   -- Test Case: 10 (No saturation Result)
+   -- Test Case: 10 (Round Robin Saturation Result)
+   -- Test Case: 12 (No saturation Result)
+   -- Test Case: 12 (Round Robin Saturation Result)
+   -- Test Case: 14 (No saturation Result)
+   -- Test Case: 14 (Round Robin Saturation Result)
+   -- Test Case: 15 (No saturation Result)
+   -- Test Case: 15 (Round Robin Saturation Result)
+   -- Test Case: 15 (Chunking Saturation Result)
+   -- Test Case: 17 (No saturation Result)
+   -- Test Case: 17 (Round Robin Saturation Result)
+   -- Test Case: 19 (No saturation Result)
+   -- Test Case: 19 (Round Robin Saturation Result)
+
+-------------------------------------------
+Tests that 3_thread_3_instruction/Nvidia/nvidia_simple_results-2020-04-20.csv passes and 3_thread_3_instruction/schedulers/LOBE_results.csv fails
+-------------------------------------------
+   -- Test Case: 0 (No saturation Result)
+   -- Test Case: 0 (Round Robin Saturation Result)
+   -- Test Case: 1 (No saturation Result)
+   -- Test Case: 1 (Round Robin Saturation Result)
+   -- Test Case: 2 (No saturation Result)
+   -- Test Case: 2 (Round Robin Saturation Result)
+   -- Test Case: 4 (No saturation Result)
+   -- Test Case: 4 (Round Robin Saturation Result)
+   -- Test Case: 4 (Chunking Saturation Result)
+   -- Test Case: 5 (No saturation Result)
+   -- Test Case: 5 (Round Robin Saturation Result)
+   -- Test Case: 6 (No saturation Result)
+   -- Test Case: 6 (Round Robin Saturation Result)
+   -- Test Case: 8 (No saturation Result)
+   -- Test Case: 8 (Round Robin Saturation Result)
+   -- Test Case: 9 (No saturation Result)
+   -- Test Case: 9 (Round Robin Saturation Result)
+   -- Test Case: 10 (No saturation Result)
+   -- Test Case: 10 (Round Robin Saturation Result)
+   -- Test Case: 12 (No saturation Result)
+   -- Test Case: 12 (Round Robin Saturation Result)
+   -- Test Case: 14 (No saturation Result)
+   -- Test Case: 14 (Round Robin Saturation Result)
+   -- Test Case: 15 (No saturation Result)
+   -- Test Case: 15 (Round Robin Saturation Result)
+   -- Test Case: 15 (Chunking Saturation Result)
+   -- Test Case: 17 (No saturation Result)
+   -- Test Case: 17 (Round Robin Saturation Result)
+   -- Test Case: 19 (No saturation Result)
+   -- Test Case: 19 (Round Robin Saturation Result)
+
+-------------------------------------------
+Tests that 3_thread_3_instruction/Nvidia/nvidia_simple_results-2020-04-20.csv fails and 3_thread_3_instruction/schedulers/LOBE_results.csv passes
+-------------------------------------------
+   NONE
+-------------------------------------------
+Tests that both 3_thread_3_instruction/Nvidia/nvidia_simple_results-2020-04-20.csv and 3_thread_3_instruction/schedulers/LOBE_results.csv fail
+-------------------------------------------
+   -- Test Case: 0 (Chunking Saturation Result)
+   -- Test Case: 1 (Chunking Saturation Result)
+   -- Test Case: 2 (Chunking Saturation Result)
+   -- Test Case: 5 (Chunking Saturation Result)
+   -- Test Case: 6 (Chunking Saturation Result)
+   -- Test Case: 8 (Chunking Saturation Result)
+   -- Test Case: 9 (Chunking Saturation Result)
+   -- Test Case: 10 (Chunking Saturation Result)
+   -- Test Case: 12 (Chunking Saturation Result)
+   -- Test Case: 14 (Chunking Saturation Result)
+   -- Test Case: 17 (Chunking Saturation Result)
+   -- Test Case: 19 (Chunking Saturation Result)
+
+

@@ -1,0 +1,42 @@
+-------------------------------------------
+Tests that differ between 2_thread_2_instruction/AMD/vega_simple_results-2020-04-09.csv and 2_thread_2_instruction/schedulers/HSA_results.csv
+-------------------------------------------
+   -- Test Case: 0 (No saturation Result)
+   -- Test Case: 0 (Chunking Saturation Result)
+   -- Test Case: 1 (No saturation Result)
+   -- Test Case: 1 (Chunking Saturation Result)
+   -- Test Case: 2 (No saturation Result)
+   -- Test Case: 2 (Round Robin Saturation Result)
+   -- Test Case: 4 (No saturation Result)
+   -- Test Case: 4 (Round Robin Saturation Result)
+   -- Test Case: 7 (No saturation Result)
+   -- Test Case: 7 (Round Robin Saturation Result)
+
+-------------------------------------------
+Tests that 2_thread_2_instruction/AMD/vega_simple_results-2020-04-09.csv passes and 2_thread_2_instruction/schedulers/HSA_results.csv fails
+-------------------------------------------
+   -- Test Case: 0 (No saturation Result)
+   -- Test Case: 0 (Chunking Saturation Result)
+   -- Test Case: 1 (No saturation Result)
+   -- Test Case: 1 (Chunking Saturation Result)
+   -- Test Case: 2 (No saturation Result)
+   -- Test Case: 2 (Round Robin Saturation Result)
+   -- Test Case: 4 (No saturation Result)
+   -- Test Case: 4 (Round Robin Saturation Result)
+   -- Test Case: 7 (No saturation Result)
+   -- Test Case: 7 (Round Robin Saturation Result)
+
+-------------------------------------------
+Tests that 2_thread_2_instruction/AMD/vega_simple_results-2020-04-09.csv fails and 2_thread_2_instruction/schedulers/HSA_results.csv passes
+-------------------------------------------
+   NONE
+-------------------------------------------
+Tests that both 2_thread_2_instruction/AMD/vega_simple_results-2020-04-09.csv and 2_thread_2_instruction/schedulers/HSA_results.csv fail
+-------------------------------------------
+   -- Test Case: 0 (Round Robin Saturation Result)
+   -- Test Case: 1 (Round Robin Saturation Result)
+   -- Test Case: 2 (Chunking Saturation Result)
+   -- Test Case: 4 (Chunking Saturation Result)
+   -- Test Case: 7 (Chunking Saturation Result)
+
+
