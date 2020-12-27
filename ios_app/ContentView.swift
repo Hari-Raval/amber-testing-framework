@@ -36,6 +36,7 @@ struct ContentView: View {
     @State var inner_i = 0;
     @State var debug_i = 0;
     @State var killed_tests = 0;
+    @State var elapsed_time = 0.0;
     let num_workgroups = 65532
     
 
@@ -59,6 +60,8 @@ struct ContentView: View {
                
                 
                 let dwi = DispatchWorkItem {
+                    
+                    let start = DispatchTime.now()
                     
                     // Metal setup (before tests) here:
                     let device = MTLCreateSystemDefaultDevice()
@@ -268,6 +271,18 @@ struct ContentView: View {
                         async_i += 1
                     }
                     computing = false
+                    
+                    // Timing code from:
+                    // https://stackoverflow.com/questions/24755558/measure-elapsed-time-in-swift
+                    let end = DispatchTime.now()
+                    let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds // <<<<< Difference in nano seconds (UInt64)
+                    let timeInterval = Double(nanoTime) / 1_000_000_000 // Technically could overflow for long running tests
+
+                    DispatchQueue.main.async {
+                                // now update UI on main thread
+                        elapsed_time = timeInterval
+                    }
+                        
                 }
                 
                 //self.tapCount += 1
@@ -275,7 +290,7 @@ struct ContentView: View {
                 DispatchQueue.global().async(execute: dwi)
             }
             
-            Text("Ran \(local_i) tests out of \(test_names.count)\nLocal iterations: \(inner_i) \nKilled Tests: \(killed_tests)")
+            Text("Ran \(local_i) tests out of \(test_names.count)\nLocal iterations: \(inner_i) \nKilled Tests: \(killed_tests)\nTime (seconds): \(elapsed_time)")
             Button("Cancel") {
                 if !computing {
                     return
