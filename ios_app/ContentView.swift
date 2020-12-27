@@ -33,6 +33,8 @@ struct ContentView: View {
     @State var test_log = "Test Log:"
     @State var action_log = "Action Log:"
     @State var local_i = 0;
+    @State var inner_i = 0;
+    @State var debug_i = 0;
     @State var killed_tests = 0;
     let num_workgroups = 65532
     
@@ -41,33 +43,48 @@ struct ContentView: View {
     
     var body: some View {
         
-        
+        // nice resource to let the background thread update the UI:
+        //https://stackoverflow.com/questions/26743367/updating-the-ui-using-dispatch-async-in-swift
+        // Otherwise we get crazy errors
         Form {
             
             Button("Run Tests") {
-                if computing {
+                /*if computing {
                     return
                 }
                 if !computing {
                     computing = true
-                }
+                }*/
+                
+               
                 
                 let dwi = DispatchWorkItem {
                     
                     // Metal setup (before tests) here:
                     let device = MTLCreateSystemDefaultDevice()
+                    var to_print_errs = ""
+                    var to_print_device = ""
                     if device == nil {
-                        action_log += "Metal device is nil"
+                        to_print_device = "Metal device is nil"
                     }
-                    action_log += "\nusing device \(device?.name)"
-                    let commandQueue = device?.makeCommandQueue()
-                    if commandQueue == nil {
-                        action_log += "Command Queue is nil"
+                    to_print_device = "\nusing device " +  (device?.name)!
+                    
+                    DispatchQueue.main.async {
+                                // now update UI on main thread
+                        action_log += to_print_device;
                     }
+                    
+                   
                     let library =  device?.makeDefaultLibrary()
                     if library == nil {
-                        action_log += "Could not create default library"
+                        to_print_errs += "Could not create default library"
                     }
+                    
+                    DispatchQueue.main.async {
+                                // now update UI on main thread
+                        action_log += to_print_errs;
+                    }
+                    to_print_errs=""
                     
                     // Documented to be initialized to 0 https://developer.apple.com/documentation/metal/mtldevice/1433375-makebuffer
                     let XBuffer = device?.makeBuffer(length: num_workgroups * MemoryLayout<Int>.stride , options: [])!
@@ -80,68 +97,115 @@ struct ContentView: View {
                     
                     if (XBuffer == nil || YBuffer == nil || resultBuffer == nil )
                     {
-                        action_log += "\nError allocating buffers!"
+                        to_print_errs = "\nError allocating buffers!"
+                    }
+                    to_print_errs=""
+                    
+                    DispatchQueue.main.async {
+                                // now update UI on main thread
+                        action_log += to_print_errs;
                     }
                     
                     // Metal setup end
                     
                     // For each test
-                    while (local_i < test_names.count*100) {
+                    var async_i = 0
+                    while (async_i < test_names.count) {
                         
-                        let t_name = test_names[local_i/100]
+                        // Going backwards because the round robin ones are interesting here
+                        let t_name = test_names[test_names.count - async_i - 1]
                         
-                        test_log += "\nRunning Test: \(t_name)"
+                        DispatchQueue.main.async {
+                                    // now update UI on main thread
+                            test_log += "\nRunning Test: \(t_name)"
+                            local_i = async_i
+                        }
                         
-                        // This link seems to be okay for managing memory:
-                        // https://developer.apple.com/forums/thread/67672
-                        // initializing memory:
+                        
+                        
+                       
+                        var killed = 0;
+                        var success = 0;
+                        
+                        let test_kernel = library?.makeFunction(name: t_name)
+                        if test_kernel == nil {
+                          to_print_errs  += "\nCould not get kernel: " + t_name
+                        }
+                        
                         let XURP = XBuffer?.contents()
                         let YURP = YBuffer?.contents()
-                        
+                      
                         let XHost = XURP?.bindMemory(to: Int.self, capacity: num_workgroups)
-                        XHost?.initialize(repeating: 0, count: num_workgroups)
-                        
+                      
                         let YHost = YURP?.bindMemory(to: Int.self, capacity: num_workgroups)
-                        YHost?.initialize(repeating: 0, count: num_workgroups)
 
                         let resultURP = resultBuffer?.contents()
                         let resultHost = resultURP?.bindMemory(to: Int.self, capacity: 1)
-                        resultHost?.initialize(repeating: 0, count: 1)
-                        
-                        if (XURP == nil || YURP == nil || XHost == nil || YHost == nil || resultURP == nil || resultHost == nil )
-                        {
-                            action_log += "\nError reinitializing memory!"
+                      
+                        if (XURP == nil || YURP == nil || XHost == nil || YHost == nil || resultURP == nil || resultHost == nil ) {
+                            to_print_errs += "\nError reinitializing memory!"
                         }
                         
-                        let commandBuffer = commandQueue?.makeCommandBuffer()!
-                        if commandBuffer == nil {
-                            action_log += "CommandBuffer is nil"
+                        DispatchQueue.main.async {
+                                    // now update UI on main thread
+                            action_log += to_print_errs
                         }
                         
-                        
-                        let encoder = commandBuffer?.makeComputeCommandEncoder()!
-                        
-                        if encoder == nil {
-                            action_log += "\nencoder is nill"
-                        }
-                        
-                        encoder?.setBuffer(XBuffer, offset: 0, index: 0)
-                        encoder?.setBuffer(YBuffer, offset: 0, index: 1)
-                        encoder?.setBuffer(resultBuffer, offset: 0, index: 2)
 
-                        let test_kernel = library?.makeFunction(name: t_name)
-                        if test_kernel == nil {
-                            action_log += "\nCould not get kernel: " + t_name
+                        let numThreadgroups = MTLSize(width: num_workgroups, height: 1, depth: 1)
+                        let threadsPerThreadgroup = MTLSize(width: 1, height: 1, depth: 1)
+                          
+
+                        
+                       for iter in 0...99 {
+                         DispatchQueue.main.async {
+                            // now update UI on main thread
+                            inner_i = iter
+                          }
+                        
+                            
+                        
+                          // This link seems to be okay for managing memory:
+                          // https://developer.apple.com/forums/thread/67672
+                          // initializing memory:
+                            
+
+
+                            XHost?.initialize(repeating: 0, count: num_workgroups)
+                            YHost?.initialize(repeating: 0, count: num_workgroups)
+                            resultHost?.initialize(repeating: 0, count: 1)
+                        
+                        let commandQueue = device?.makeCommandQueue()
+                        if commandQueue == nil {
+                            to_print_errs = "Command Queue is nil"
                         }
+
+                            let commandBuffer = commandQueue?.makeCommandBuffer()!
+                            if commandBuffer == nil {
+                                to_print_errs += "CommandBuffer is nil"
+                            }
                         
-                        let numThreadgroups = MTLSize(width: num_workgroups/4, height: 1, depth: 1)
-                        let threadsPerThreadgroup = MTLSize(width: 4, height: 1, depth: 1)
+                          
+                            let encoder = commandBuffer?.makeComputeCommandEncoder()!
                         
-                        do {
+                            if encoder == nil {
+                              to_print_errs += "\nencoder is nill"
+                            }
+                        
+                           
+                        
+                          encoder?.setBuffer(XBuffer, offset: 0, index: 0)
+                          encoder?.setBuffer(YBuffer, offset: 0, index: 1)
+                          encoder?.setBuffer(resultBuffer, offset: 0, index: 2)
+
+                        
+                          
+                        
+                          do {
                             let pipeline_state = try device?.makeComputePipelineState(function: test_kernel!)
                             
                             if pipeline_state == nil {
-                                action_log += "\npipeline_state is  nil"
+                                to_print_errs += "\npipeline_state is  nil"
                             }
                             
                             encoder?.setComputePipelineState(pipeline_state!)
@@ -153,31 +217,55 @@ struct ContentView: View {
                             commandBuffer?.commit()
                             commandBuffer?.waitUntilCompleted()
                             let e = commandBuffer?.error
+                            
                             if e == nil {
-                                
                                 let result = resultBuffer?.contents().load(as: Int.self)
                                 assert(result == num_workgroups)
-                                test_log += "\nStatus: finished"
+                                //test_log += "\nStatus: finished"
+                                success += 1;
                             }
                             else {
-                                test_log += "\nStatus: KILLED\n\n"
-                                killed_tests += 1
+                                killed += 1;
+                                //usleep(1000000/8)
+                                //test_log += "\nStatus: KILLED\n\n"
+                                //killed_tests += 1
+                                /*DispatchQueue.main.async {
+                                            // now update UI on main thread
+                                    action_log += "Command buffer error: \(String(describing: commandBuffer?.error))"
+                                    }*/
+                                
+                                //print("Command buffer error: \(String(describing: commandBuffer.error))")
                             }
+                            
+                            DispatchQueue.main.async {
+                                        // now update UI on main thread
+                                action_log += to_print_errs
+                                }
 
 
                         }
                         catch {
-                           action_log += "setting the compute pipeline stage failed"
+                            to_print_errs += "setting the compute pipeline stage failed"
                         }
                         
                         
-                        usleep(1000000/8)
+                        //usleep(1000000/16)
                         
-                        local_i += 1
-                        if should_cancel {
+                        
+                        /*if should_cancel {
                             should_cancel = false
                             break
+                          }*/
                         }
+                        DispatchQueue.main.async {
+                                    // now update UI on main thread
+                            test_log += "\nFinished\nkilled: \(killed)\nSuccess: \(success)"
+                            killed_tests += killed
+                        }
+                        
+                        //
+                        //killed_tests += killed
+                        async_i += 1
                     }
                     computing = false
                 }
@@ -187,7 +275,7 @@ struct ContentView: View {
                 DispatchQueue.global().async(execute: dwi)
             }
             
-            Text("Ran \(local_i) tests out of \(test_names.count)\nKilled Tests: \(killed_tests)")
+            Text("Ran \(local_i) tests out of \(test_names.count)\nLocal iterations: \(inner_i) \nKilled Tests: \(killed_tests)")
             Button("Cancel") {
                 if !computing {
                     return
