@@ -1,0 +1,3 @@
+times in seconds
+ipad time: 4170.25
+iphone time: 4033.83
