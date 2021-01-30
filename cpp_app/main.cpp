@@ -5,14 +5,15 @@
 #include <vector>
 #include <chrono>
 #include <pthread.h>
+#include <functional>
 
 using std_clock = std::chrono::system_clock;
 using sec = std::chrono::duration<double>;
 using namespace std;
 
-#define MAX_THREADS 96
-#define TIME_OUT 1
-#define INNER_ITERATIONS 100
+//#define MAX_THREADS 6
+#define TIME_OUT 20
+#define INNER_ITERATIONS 20
 
 atomic_uint *t_x;
 atomic_uint *t_y;
