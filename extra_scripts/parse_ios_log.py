@@ -17,8 +17,8 @@ def get_file_contents(fname):
 
 raw_data = get_file_contents(fname)
 
-name = fname.split("/")[-1].replace(".txt","")
-print(name)
+dname = fname.split("/")[-1].replace(".txt","")
+print(dname)
 
 
 tests = raw_data.split("Running ")[1:]
@@ -122,7 +122,7 @@ for r in runs:
     sum_line = "Total failures:,"+ ",".join([str(total_e), str(total_rr), str(total_c), str(total_ap)])
     csv.append(sum_line)
     
-    fname = name + ".csv"
+    fname = dname + ".csv"
     fname = os.path.join(res_path, result_map[r], "Apple", fname)
     f = open(fname,'w')
     f.write("\n".join(csv))
