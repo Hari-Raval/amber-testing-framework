@@ -1482,7 +1482,7 @@ def get_t_name(t):
 
 begin = time.time()
 test_log = ""
-for t in range(2,NUM_TESTS):
+for t in range(NUM_TESTS):
     t_name = get_t_name(t);
     passed = 0
     failed = 0
