@@ -3,7 +3,10 @@ import re
 import pdb
 import os.path
 
-res_path = "/Users/tylersorensen/Documents/Github/fp_repo2/Amber-Testing-Framework/Driver_and_Comparator_Results"
+#res_path = "/Users/tylersorensen/Documents/Github/fp_repo2/Amber-Testing-Framework_ssh/Driver_and_Comparator_Results"
+res_path = "/home/tsorensen/github/Amber-Testing-Framework_ssh/Amber-Testing-Framework/Driver_and_Comparator_Results"
+
+VENDOR = "CUDA"
 
 # Pass in the input log
 assert(len(sys.argv) == 2)
@@ -47,6 +50,7 @@ def get_run(t):
     assert(0)
 
 def get_killed_success(t):
+    #pdb.set_trace()
     k = re.search("killed: (\d+)",t)[1]
     s = re.search("Success: (\d+)",t)[1]
     return k,s
@@ -122,8 +126,8 @@ for r in runs:
     sum_line = "Total failures:,"+ ",".join([str(total_e), str(total_rr), str(total_c), str(total_ap)])
     csv.append(sum_line)
     
-    fname = dname + ".csv"
-    fname = os.path.join(res_path, result_map[r], "Apple", fname)
+    fname = dname + "-inter-workgroup.csv"
+    fname = os.path.join(res_path, result_map[r], VENDOR, fname)
     f = open(fname,'w')
     f.write("\n".join(csv))
     f.close()
