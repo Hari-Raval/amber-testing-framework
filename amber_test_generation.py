@@ -388,7 +388,7 @@ def generate_amber_test(inputted_file, output_file_name, config=default_config):
     # name and open the output file to contain the amber test case
     output_amber_file = output_file_name
     output_amber_file = output_amber_file + ".amber"
-    output = open(output_amber_file, "a")
+    output = open(output_amber_file, "w")
 
     # call the appropriate functions to generate the amber test
     write_amber_prologue(output, timeout, threads_per_workgroup, workgroups, num_of_testing_threads, saturation_level,
