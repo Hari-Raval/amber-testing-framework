@@ -3,10 +3,10 @@ import re
 import pdb
 import os.path
 
-#res_path = "/Users/tylersorensen/Documents/Github/fp_repo2/Amber-Testing-Framework_ssh/Driver_and_Comparator_Results"
-res_path = "/home/tsorensen/github/Amber-Testing-Framework_ssh/Amber-Testing-Framework/Driver_and_Comparator_Results"
+res_path = "/Users/tylersorensen/Documents/Github/fp_repo2/Amber-Testing-Framework/Driver_and_Comparator_Results"
+#res_path = "/home/tsorensen/github/Amber-Testing-Framework_ssh/Amber-Testing-Framework/Driver_and_Comparator_Results"
 
-VENDOR = "CUDA"
+VENDOR = "APPLE"
 
 # Pass in the input log
 assert(len(sys.argv) == 2)
@@ -128,6 +128,7 @@ for r in runs:
     
     fname = dname + "-inter-workgroup.csv"
     fname = os.path.join(res_path, result_map[r], VENDOR, fname)
+    print(fname)
     f = open(fname,'w')
     f.write("\n".join(csv))
     f.close()
