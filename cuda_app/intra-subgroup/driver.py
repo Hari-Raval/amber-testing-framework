@@ -1451,6 +1451,8 @@ TEST_NAMES = ["chunked_2t_2i_0",
 "round_robin3t_4i_98",
 "round_robin3t_4i_99"]
 
+TEST_NAMES = [t for t in TEST_NAMES if "plain" in t]
+
 NUM_TESTS=len(TEST_NAMES)
 ITERS = 20
 TIMEOUT = 1

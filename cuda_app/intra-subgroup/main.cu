@@ -63,6 +63,8 @@ int main(int argc, char **argv) {
   init_kernels();
   int total_killed = 0;
   tfunc host_function_ptr;
+  assert(t_num <= kernel_names.size());
+  assert(t_num <= kernels.size());
 
   // In case we want to do it iteratively
   //for (int t = t_num; t < kernel_names.size(); t++) {
