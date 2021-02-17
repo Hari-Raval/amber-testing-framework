@@ -1,3 +1,7 @@
 times in seconds
 ipad time: 4170.25
 iphone time: 4033.83
+
+Time for intra-subgroup:
+iPhone 9.9s
+iPad 18.3s
