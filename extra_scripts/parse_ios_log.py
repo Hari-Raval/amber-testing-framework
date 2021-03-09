@@ -6,7 +6,7 @@ import os.path
 res_path = "/Users/tylersorensen/Documents/Github/fp_repo2/Amber-Testing-Framework/Driver_and_Comparator_Results"
 #res_path = "/home/tsorensen/github/Amber-Testing-Framework_ssh/Amber-Testing-Framework/Driver_and_Comparator_Results"
 
-VENDOR = "APPLE"
+VENDOR = "CUDA"
 
 # Pass in the input log
 assert(len(sys.argv) == 2)
@@ -67,7 +67,7 @@ results = {"3t_4i" : [],
            "2t_3i" : [],
            "2t_4i" : []}
 
-result_map = {"3t_4i" : "3_thread_3_instruction",
+result_map = {"3t_4i" : "3_thread_4_instruction",
            "3t_3i" : "3_thread_3_instruction",
            "2t_2i" : "2_thread_2_instruction",
            "2t_3i" : "2_thread_3_instruction",

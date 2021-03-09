@@ -17,8 +17,8 @@ Test File Name,No saturation Result,Round Robin Saturation Result,Chunking Satur
 15,P,P,P,P
 16,P,P,P,P
 17,P,P,P,P
-18,F (20/20),P,P,F
-19,F (20/20),P,P,F
+18,P,P,P,P
+19,P,P,P,P
 20,P,P,P,P
 21,P,P,P,P
 22,P,P,P,P
@@ -104,72 +104,4 @@ Test File Name,No saturation Result,Round Robin Saturation Result,Chunking Satur
 102,P,P,P,P
 103,P,P,P,P
 104,P,P,P,P
-105,P,P,P,P
-106,P,P,P,P
-107,P,P,P,P
-108,P,P,P,P
-109,P,P,P,P
-110,P,P,P,P
-111,P,P,P,P
-112,P,P,P,P
-113,P,P,P,P
-114,P,P,P,P
-115,P,P,P,P
-116,P,P,P,P
-117,P,P,P,P
-118,P,P,P,P
-119,P,P,P,P
-120,P,P,P,P
-121,P,P,P,P
-122,P,P,P,P
-123,P,P,P,P
-124,P,P,P,P
-125,P,P,P,P
-126,P,P,P,P
-127,P,P,P,P
-128,P,P,P,P
-129,P,P,P,P
-130,P,P,P,P
-131,P,P,P,P
-132,P,P,P,P
-133,P,P,P,P
-134,P,P,P,P
-135,P,P,P,P
-136,P,P,P,P
-137,P,P,P,P
-138,P,P,P,P
-139,P,P,P,P
-140,P,P,P,P
-141,P,P,P,P
-142,F (20/20),P,P,F
-143,P,P,P,P
-144,P,P,P,P
-145,P,P,P,P
-146,P,P,P,P
-147,P,P,P,P
-148,P,P,P,P
-149,P,P,P,P
-150,P,P,P,P
-151,P,P,P,P
-152,P,P,P,P
-153,P,P,P,P
-154,P,P,P,P
-155,P,P,P,P
-156,P,P,P,P
-157,P,P,P,P
-158,P,P,P,P
-159,P,P,P,P
-160,P,P,P,P
-161,P,P,P,P
-162,P,P,P,P
-163,P,P,P,P
-164,P,P,P,P
-165,P,P,P,P
-166,P,P,P,P
-167,P,P,P,P
-168,P,P,P,P
-169,P,P,P,P
-170,F (20/20),P,P,F
-171,P,P,P,P
-172,P,P,P,P
-Total failures:,80,0,0,4
+Total failures:,0,0,0,0

@@ -68,7 +68,7 @@ results = {"3t_4i" : [],
            "2t_3i" : [],
            "2t_4i" : []}
 
-result_map = {"3t_4i" : "3_thread_3_instruction",
+result_map = {"3t_4i" : "3_thread_4_instruction",
            "3t_3i" : "3_thread_3_instruction",
            "2t_2i" : "2_thread_2_instruction",
            "2t_3i" : "2_thread_3_instruction",
@@ -106,7 +106,9 @@ for r in runs:
     total_rr = 0
     total_c = 0
     total_ap = 0
-    for i in range(len(results[r])//3):
+    #if (r == '3t_3i'):
+    #    pdb.set_trace()
+    for i in range(len(results[r])):
         name = str(i)
         e,t = get_entry(i, results[r], "plain")
         total_e += t
@@ -128,7 +130,9 @@ for r in runs:
         csv.append(line)
     sum_line = "Total failures:,"+ ",".join([str(total_e), str(total_rr), str(total_c), str(total_ap)])
     csv.append(sum_line)
-    
+
+    #if r == '3t_3i':
+    #    pdb.set_trace()
     fname = dname + ".csv"
     fname = os.path.join(res_path, result_map[r], VENDOR, fname)
     print(fname)

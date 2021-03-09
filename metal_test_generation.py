@@ -44,7 +44,11 @@ def write_metal_prologue(output, timeout, threads_per_workgroup, workgroups, num
 
     output.write("#include <metal_stdlib>\n")
     output.write("using namespace metal;\n")
+<<<<<<< HEAD
     output.write("kernel void testKernel(device atomic_uint * x, device atomic_uint * y, device atomic_int* count, uint gid_x [[thread_position_in_grid]], uint tid_x [[ threadgroup_position_in_grid ]]) {\n")
+=======
+    output.write("kernel void testKernel(device atomic_uint * x, device atomic_uint * y, device atomic_int* count, uint gid_x [[thread_position_in_grid]], uint total_threads [[threads_per_grid]], uint lane [[ thread_index_in_simdgroup ]], uint simd_width [[ threads_per_simdgroup ]], uint sid_x [[simdgroup_index_in_threadgroup]]) {\n")
+>>>>>>> 677d32d84f74aa179120516b6d24c048af67cc82
 
     output.write("\tint pc = 0;\n")
 
@@ -52,7 +56,7 @@ def write_metal_prologue(output, timeout, threads_per_workgroup, workgroups, num
     if saturation_level == 1:
         total_threads = workgroups * threads_per_workgroup
         output.write("\n")
-        output.write("\tint total_num_threads = " + str(total_threads) + ";\n")
+        output.write("\tint total_num_threads = total_threads;\n")
         output.write("\tint num_testing_threads = " + str(num_testing_threads) + ";\n")
         output.write("\tuint index = gid_x / num_testing_threads;\n")
 
@@ -79,8 +83,7 @@ def write_metal_thread_program(output, thread_instructions, thread_number, numbe
         if subgroup_set == 0:
             output.write("\tif (gid_x == " + str(thread_number) + ") { \n")
         else:
-            output.write("\tif (gl_SubgroupID == " + str(thread_number) + " && gl_SubgroupInvocationID == 0 &&"
-                                                                          " gl_WorkGroupID.x == 0" + ") { \n")
+            output.write("\tif (sid_x == " + str(thread_number) + " && lane == 0) { \n")
     elif saturation_level == 1:
         output.write("\tif (gid_x % num_testing_threads == " + str(thread_number) + ") { \n")
     elif saturation_level == 2:
