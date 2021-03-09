@@ -3,10 +3,10 @@ import re
 import pdb
 import os.path
 
-#res_path = "/Users/tylersorensen/Documents/Github/fp_repo2/Amber-Testing-Framework/Driver_and_Comparator_Results"
-res_path = "/home/tsorensen/github/Amber-Testing-Framework_ssh/Amber-Testing-Framework/Driver_and_Comparator_Results"
+res_path = "/Users/tylersorensen/Documents/Github/fp_repo2/Amber-Testing-Framework/Driver_and_Comparator_Results"
+#res_path = "/home/tsorensen/github/Amber-Testing-Framework_ssh/Amber-Testing-Framework/Driver_and_Comparator_Results"
 
-VENDOR = "CUDA"
+VENDOR = "Apple"
 
 # Pass in the input log
 assert(len(sys.argv) == 2)
