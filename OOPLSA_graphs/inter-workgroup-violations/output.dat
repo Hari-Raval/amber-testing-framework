@@ -1,0 +1,7 @@
+device,plain-det,plain-nd,chunk-det,chunk-nd,rr-det,rr-nd
+Quadro RTX 4000,1,3,246,0,6,9
+A14,246,0,246,0,246,0
+A12,246,0,246,0,256,1
+Mali-G77,246,1,245,6,246,11
+Adreno 620,1,4,245,1,11,10
+Tegra X1,0,0,246,0,0,1
