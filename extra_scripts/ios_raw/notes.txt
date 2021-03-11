@@ -1,5 +1,6 @@
 times in seconds
 <<<<<<< HEAD
+<<<<<<< HEAD
 ipad time inter-workgroup: 4170.25
 iphone time inter-workgroup: 4033.83
 =======
@@ -10,3 +11,7 @@ Time for intra-subgroup:
 iPhone 9.9s
 iPad 18.3s
 >>>>>>> 677d32d84f74aa179120516b6d24c048af67cc82
+=======
+ipad time: 4170.25
+iphone time: 4033.83
+>>>>>>> parent of 45d2fc5... updated some files

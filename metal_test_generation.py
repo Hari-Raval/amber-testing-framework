@@ -45,10 +45,14 @@ def write_metal_prologue(output, timeout, threads_per_workgroup, workgroups, num
     output.write("#include <metal_stdlib>\n")
     output.write("using namespace metal;\n")
 <<<<<<< HEAD
+<<<<<<< HEAD
     output.write("kernel void testKernel(device atomic_uint * x, device atomic_uint * y, device atomic_int* count, uint gid_x [[thread_position_in_grid]], uint tid_x [[ threadgroup_position_in_grid ]]) {\n")
 =======
     output.write("kernel void testKernel(device atomic_uint * x, device atomic_uint * y, device atomic_int* count, uint gid_x [[thread_position_in_grid]], uint total_threads [[threads_per_grid]], uint lane [[ thread_index_in_simdgroup ]], uint simd_width [[ threads_per_simdgroup ]], uint sid_x [[simdgroup_index_in_threadgroup]]) {\n")
 >>>>>>> 677d32d84f74aa179120516b6d24c048af67cc82
+=======
+    output.write("kernel void testKernel(device atomic_uint * x, device atomic_uint * y, device atomic_int* count, uint gid_x [[thread_position_in_grid]]) {\n")
+>>>>>>> parent of 45d2fc5... updated some files
 
     output.write("\tint pc = 0;\n")
 
