@@ -1,10 +1,10 @@
 import os
-import pdb
+import sys
 import re
+import pdb
 
-base_path = "../../Driver_and_Comparator_Results/"
-#base_path2 = "../../extra_results/"
-
+empirical_base_path = "../../empirical_results/"
+formal_base_path = "../../Driver_and_Comparator_Results/"
 
 devices = ["Quadro RTX 4000"]
 
@@ -24,7 +24,7 @@ def get_data(fname):
 
 def find_ff_d_tests(c):
     ret = []
-    p = os.path.join(base_path,c,"schedulers/WEAK_FAIR_results.csv")
+    p = os.path.join(formal_base_path,c,"schedulers/WEAK_FAIR_results.csv")
     data = get_data(p).split("\n")[1:-2]
     for t in data:
         if "P" in t:
@@ -35,7 +35,7 @@ def find_ff_d_tests(c):
 
 def find_ff_d_tests2(c):
     ret = []
-    p = os.path.join(base_path,c,"schedulers/STRONG_FAIR_results.csv")
+    p = os.path.join(formal_base_path,c,"schedulers/STRONG_FAIR_results.csv")
     data = get_data(p).split("\n")[1:-2]
     for t in data:
         if "P" in t:
@@ -54,20 +54,12 @@ def check_res(res):
     res = res.split(",")[1:4]
     for r in res:
         if "P" not in r:
-            #pdb.set_trace()
             return "F",res
     return "P",res
 
 def get_csv_path(d,c):
-    if d in ["Quadro RTX 4000", "A14", "A12"]:
-        da = device_alias[d]
-        return os.path.join(base_path,c,da)
-    else:
-        da = device_alias[d]
-        dr = config_alias[c]
-        # maybe name has different date for different chips?
-        fname = "iteration_based_final_results.csv"
-        return os.path.join(base_path2,da,dr,fname)
+    da = device_alias[d]
+    return os.path.join(empirical_base_path,c,da)
 
 def split_d(d):
     d = d.split("\n")
@@ -77,6 +69,9 @@ def split_d(d):
     assert("Test File" in d[0])
     return d[1:-1]
 
+print("checking devices:", devices)
+print("---------------")
+print("checking weak fairness...")
 for c in config:
     r = find_ff_d_tests(c)
     c_d = 0
@@ -89,14 +84,20 @@ for c in config:
             v,vv = check_res(data[t])
             if v in ["F"]:
                 assert(False)
-                #if v == "P":
-                #print("passed:",c,d,t)
-                #if v == "D":
-                #c_d += 1
 
 
+# it will fail the assert if weak fairness tests don't pass
+print("passed weak fairness")
+print("-----")
+print("checking strong fairness")
 
-print("passed weak fair")
+verbose = False
+if "-v" in sys.argv:
+    verbose = True
+
+def pp_status(s):
+    return s.replace("P","0").replace("(","").replace(")","").replace(" ","").replace("F","")
+
 
 c_d = 0
 c_n = 0
@@ -111,7 +112,15 @@ for c in config:
             v,vv = check_res(data[t])
             if v in ["F"]:
                 c_d+=1
-                print("found fail",c,t,d,vv)
+                if verbose:
+                    print("found failed test")
+                    print("config:",c)
+                    print("id:",t)
+                    print("plain fails:",pp_status(vv[0]))
+                    print("round-robin fails:",pp_status(vv[1]))
+                    print("chunked failes:", pp_status(vv[2]))
+                    print("--")
+
             #if v in ["N"]:
             #    c_n+=1
             
@@ -119,7 +128,12 @@ for c in config:
                 #print("passed:",c,d,t)
                 #if v == "D":
                 #c_d += 1
+if c_d == 0:
+    print("passed strong fairness tests:", c_d)
+else:
+    print("Failed! Number of failed tests:", c_d)
 
-print("failed strong fairness tests:", c_d)
+if not verbose:
+    print("run with -v to observe more information about failed tests")
 
 
