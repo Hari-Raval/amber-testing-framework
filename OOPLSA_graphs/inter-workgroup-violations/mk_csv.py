@@ -8,7 +8,7 @@ base_path2 = "../../extra_results/"
 
 #devices = ["Quadro RTX 4000", "A14", "A12", "Mali-G77", "Adreno 620"]
 
-devices = ["GeForce 940M", "Quadro RTX 4000", "A14", "A12", "Mali-G77", "Adreno 620", "Tegra X1", "Intel HD620"]
+devices = ["GeForce 940M", "Quadro RTX 4000", "A14", "A12", "Intel HD620", "Mali-G77", "Adreno 620", "Tegra X1"]
 
 
 device_alias = {"Quadro RTX 4000": "CUDA/toucan_quadro_rtx4000-inter-workgroup.csv",
