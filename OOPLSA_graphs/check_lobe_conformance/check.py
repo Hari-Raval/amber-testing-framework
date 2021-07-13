@@ -6,14 +6,16 @@ base_path = "../../Driver_and_Comparator_Results/"
 base_path2 = "../../extra_results/"
 
 
-devices = ["Quadro RTX 4000", "A14", "A12", "Mali-G77", "Adreno 620", "Tegra X1"]
+devices = ["GeForce 940M", "Quadro RTX 4000", "A14", "A12", "Mali-G77", "Adreno 620", "Tegra X1", "Intel HD620"]
 
 device_alias = {"Quadro RTX 4000": "CUDA/toucan_quadro_rtx4000-inter-workgroup.csv",
+                "GeForce 940M" : "CUDA/laptop_940m-inter-workgroup.csv",
                 "A14" : "Apple/iphone_12_a14-inter-workgroup.csv",
                 "A12" : "Apple/ipad_air_3_a12-inter-workgroup.csv",
                 "Mali-G77": "galaxy-s20-mali-2021-02-07",
                 "Adreno 620" : "pixel5-adreno-2021-02-06",
-                "Tegra X1" : "results-NVIDIA-SHIELD-Android-TV"}
+                "Tegra X1" : "results-NVIDIA-SHIELD-Android-TV",
+                "Intel HD620": "intelHD620-2021-03-16"}
 
 config = ["2_thread_2_instruction",
           "2_thread_3_instruction",
@@ -50,16 +52,15 @@ def get_failed_and_total(s):
     return int(tt[1]),int(tt[2])
 
 def check_res(res):
-    res = res.split(",")[3]
-    if "P" in res:
-        return "P"
-    f,t = get_failed_and_total(res)
-    if f == t:
-        return "D"
-    return "N"
+    res = res.split(",")[1:4]
+    for r in res:
+        if "P" not in r:
+            #pdb.set_trace()
+            return "F",res
+    return "P",res
 
 def get_csv_path(d,c):
-    if d in ["Quadro RTX 4000", "A14", "A12"]:
+    if d in ["Quadro RTX 4000", "A14", "A12","GeForce 940M"]:
         da = device_alias[d]
         return os.path.join(base_path,c,da)
     else:
@@ -77,22 +78,24 @@ def split_d(d):
     assert("Test File" in d[0])
     return d[1:-1]
 
-for c in config:
-    r = find_ff_d_tests(c)
-    c_d = 0
-    for d in devices:
+for d in devices:
+    fn = 0
+    for c in config:
+        r = find_ff_d_tests(c)
         dp = device_alias[d]
         p = get_csv_path(d,c)
         data = split_d(get_data(p))
 
         for t in r:
-            v = check_res(data[t])
-            if v in ["N", "D"]:
-                assert(False)
+            v,vv = check_res(data[t])
+            if v in ["F"]:
+                print("found fail",c,t,d,vv)
+                fn += 1
+                #assert(False)
                 #if v == "P":
                 #print("passed:",c,d,t)
                 #if v == "D":
                 #c_d += 1
+    print("device failed count:", d,fn)
 
-print("all passed!")
 

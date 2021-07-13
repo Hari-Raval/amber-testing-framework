@@ -7,14 +7,19 @@ base_path = "../../Driver_and_Comparator_Results/"
 base_path2 = "../../extra_results/"
 
 #devices = ["Quadro RTX 4000", "A14", "A12", "Mali-G77", "Adreno 620"]
-devices = ["Quadro RTX 4000", "A14", "A12", "Mali-G77", "Adreno 620", "Tegra X1"]
+
+devices = ["GeForce 940M", "Quadro RTX 4000", "A14", "A12", "Mali-G77", "Adreno 620", "Tegra X1", "Intel HD620"]
+
 
 device_alias = {"Quadro RTX 4000": "CUDA/toucan_quadro_rtx4000-inter-workgroup.csv",
+                "GeForce 940M" : "CUDA/laptop_940m-inter-workgroup.csv",
                 "A14" : "Apple/iphone_12_a14-inter-workgroup.csv",
                 "A12" : "Apple/ipad_air_3_a12-inter-workgroup.csv",
                 "Mali-G77": "galaxy-s20-mali-2021-02-07",
                 "Adreno 620" : "pixel5-adreno-2021-02-06",
-                "Tegra X1" : "results-NVIDIA-SHIELD-Android-TV"}
+                "Tegra X1" : "results-NVIDIA-SHIELD-Android-TV",
+                "Intel HD620": "intelHD620-2021-03-16"}
+
 
 config = ["2_thread_2_instruction",
           "2_thread_3_instruction",
@@ -89,7 +94,7 @@ def update_results(l,d):
             d_result_failed_roundr_non[d] += 1
 
 def get_csv_path(d,c):
-    if d in ["Quadro RTX 4000", "A14", "A12"]:
+    if d in ["Quadro RTX 4000", "A14", "A12", "GeForce 940M"]:
         da = device_alias[d]
         return os.path.join(base_path,c,da)
     else:

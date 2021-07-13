@@ -2,7 +2,7 @@ import os
 import sys
 sys.path.insert(0,"../")
 import amber_test_generation
-import metal_test_generation
+#import metal_test_generation
 from configuration import Configuration
 
 sizes_alias = {"2_thread_2_instruction" : "2t_2i",
@@ -44,7 +44,7 @@ def mk_rr_test(finput, prefix, t):
     chunk_rr = Configuration(timeout=2000, workgroups=65532, threads_per_workgroup=1, saturation_level=1, subgroup=0)
     os.system("cp " + finput + " " + dir_name + "/")
     amber_test_generation.generate_amber_test(finput, dir_name+"/"+name, chunk_rr)
-    metal_test_generation.generate_metal_test(finput, dir_name+"/"+name, chunk_rr)
+    #metal_test_generation.generate_metal_test(finput, dir_name+"/"+name, chunk_rr)
 
 def mk_chunked_test(finput, prefix, t):
     name = sizes_alias[prefix] + "_" + str(t)
@@ -53,7 +53,7 @@ def mk_chunked_test(finput, prefix, t):
     chunk_cfg = Configuration(timeout=2000, workgroups=65532, threads_per_workgroup=1, saturation_level=2, subgroup=0)
     os.system("cp " + finput + " " + dir_name + "/")
     amber_test_generation.generate_amber_test(finput, dir_name+"/"+name, chunk_cfg)
-    metal_test_generation.generate_metal_test(finput, dir_name+"/"+name, chunk_cfg)
+    #metal_test_generation.generate_metal_test(finput, dir_name+"/"+name, chunk_cfg)
 
 def mk_plain_test(finput, prefix, t):
     name = sizes_alias[prefix] + "_" + str(t)
@@ -61,7 +61,7 @@ def mk_plain_test(finput, prefix, t):
     rm_and_mkdir(dir_name)
     os.system("cp " + finput + " " + dir_name + "/")
     amber_test_generation.generate_amber_test(finput, dir_name+"/"+name)
-    metal_test_generation.generate_metal_test(finput, dir_name+"/"+name)
+    #metal_test_generation.generate_metal_test(finput, dir_name+"/"+name)
 
 def generate_tests(prefix, tests):
     for t in tests:
