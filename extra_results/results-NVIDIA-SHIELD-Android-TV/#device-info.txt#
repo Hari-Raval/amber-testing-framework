@@ -1,0 +1,261 @@
+10:10:41.404 I: <gapit> Exec: /home/kolmio/SHIELD_TESTING/agi/agi/gapis --enable-local-files --experimental-enable-vulkan-tracing --experimental-enable-angle-tracing --experimental-enable-perf-tab --idle-timeout 1m --log-level Info --log-style brief --gapis-auth-token h3fBzC48
+10:10:41.492 I: <gapis> 10:10:41.492 I: <gapis> Adding new device
+10:10:41.492 I: <gapis> 10:10:41.492 I: <gapis> New scheduler for device: 8c53f8d79add539b7af51594bcac0445ae185c9e
+10:10:41.492 I: <gapis> 10:10:41.492 I: <gapis> New trace scheduler for device: 8c53f8d79add539b7af51594bcac0445ae185c9e fusser3
+10:10:41.493 I: <gapis> 10:10:41.493 W: <gapis> Could not scan for remote GGP devices. Error: Could not find ggp executable to list instances
+10:10:41.493 I: <gapis>    Cause: ggp could not be found from GGP_SDK_PATH or PATH
+10:10:41.493 I: <gapis> GGP_SDK_PATH: 
+10:10:41.493 I: <gapis> PATH: /usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/kolmio/vkdev/install/glslang/bin:/home/kolmio/vkdev/install/Vulkan-Tools/bin:/home/kolmio/.local/bin:/home/kolmio/amber/out/Debug:/home/kolmio/apache-maven-3.6.3/bin:/home/kolmio/graphicsfuzz/graphicsfuzz/target/graphicsfuzz/python/drivers
+10:10:41.493 I: <gapis> search: [ggp]
+10:10:41.494 I: <gapis> Bound on port '45187'
+10:10:41.494 I: <gapis> 10:10:41.494 I: <gapis> Starting grpc server
+12:10:41.687 I: [Try ABI: arm64-v8a⇒gapidapk.EnsureInstalled] <gapis> Examining gapid.apk on host...
+12:10:41.692 I: [Try ABI: arm64-v8a⇒gapidapk.EnsureInstalled] <gapis> Looking for gapid.apk...
+12:10:41.768 I: [Try ABI: arm64-v8a⇒gapidapk.EnsureInstalled] <gapis> Installing gapid.apk...
+12:10:43.220 I: [Try ABI: arm64-v8a⇒gapidapk.EnsureInstalled] <gapis> Looking for gapid.apk...
+12:10:43.404 I: [Try ABI: arm64-v8a⇒gapidapk.EnsureInstalled] <gapis> Found gapid package...
+12:10:43.561 I: <gapis> No developer driver found, attempting to use GPU profiling libraries in system image.
+12:10:43.583 I: [startDevInfoService] <gapis> Attempt to start service: com.google.android.gapid.DeviceInfoService
+12:10:45.314 I: <gapis> Adding new device
+12:10:45.314 I: <gapis> Adding new device
+12:10:45.314 I: <gapis> New scheduler for device: 8c689c236cc3248dbee9613e74c05fbf5e18d894
+12:10:45.314 I: <gapis> New trace scheduler for device: 8c689c236cc3248dbee9613e74c05fbf5e18d894 NVIDIA SHIELD Android TV
+[
+  {
+    "DeviceID": "8c689c236cc3248dbee9613e74c05fbf5e18d894",
+    "Instance": {
+      "ID": {
+        "data": "jGicI2zDJI2+6WE+dMBfv14Y2JQ="
+      },
+      "serial": "SHIELDTV1:5555",
+      "name": "NVIDsIA SHIELD Android TV",
+      "configuration": {
+        "OS": {
+          "kind": 4,
+          "name": "9",
+          "build": "PPR1.180610.011.5485876_2426.5720",
+          "major_version": 9,
+          "API_version": 28
+        },
+        "hardware": {
+          "name": "darcy",
+          "CPU": {
+            "name": "darcy",
+            "vendor": "ARM",
+            "architecture": 2
+          },
+          "GPU": {
+            "name": "NVIDIA Tegra X1 (rev B) (nvgpu)",
+            "vendor": "NVIDIA"
+          }
+        },
+        "ABIs": [
+          {
+            "name": "arm64-v8a",
+            "OS": 4,
+            "architecture": 2,
+            "memory_layout": {
+              "endian": 2,
+              "pointer": {
+                "size": 8,
+                "alignment": 8
+              },
+              "integer": {
+                "size": 8,
+                "alignment": 8
+              },
+              "size": {
+                "size": 8,
+                "alignment": 8
+              },
+              "char": {
+                "size": 1,
+                "alignment": 1
+              },
+              "i64": {
+                "size": 8,
+                "alignment": 8
+              },
+              "i32": {
+                "size": 4,
+                "alignment": 4
+              },
+              "i16": {
+                "size": 2,
+                "alignment": 2
+              },
+              "i8": {
+                "size": 1,
+                "alignment": 1
+              },
+              "f64": {
+                "size": 8,
+                "alignment": 8
+              },
+              "f32": {
+                "size": 4,
+                "alignment": 4
+              },
+              "f16": {
+                "size": 2,
+                "alignment": 2
+              }
+            }
+          },
+          {
+            "name": "armeabi-v7a",
+            "OS": 4,
+            "architecture": 1,
+            "memory_layout": {
+              "endian": 2,
+              "pointer": {
+                "size": 4,
+                "alignment": 4
+              },
+              "integer": {
+                "size": 4,
+                "alignment": 4
+              },
+              "size": {
+                "size": 4,
+                "alignment": 4
+              },
+              "char": {
+                "size": 1,
+                "alignment": 1
+              },
+              "i64": {
+                "size": 8,
+                "alignment": 8
+              },
+              "i32": {
+                "size": 4,
+                "alignment": 4
+              },
+              "i16": {
+                "size": 2,
+                "alignment": 2
+              },
+              "i8": {
+                "size": 1,
+                "alignment": 1
+              },
+              "f64": {
+                "size": 8,
+                "alignment": 8
+              },
+              "f32": {
+                "size": 4,
+                "alignment": 4
+              },
+              "f16": {
+                "size": 2,
+                "alignment": 2
+              }
+            }
+          },
+          {
+            "name": "armeabi",
+            "OS": 4,
+            "architecture": 1,
+            "memory_layout": {
+              "endian": 2,
+              "pointer": {
+                "size": 4,
+                "alignment": 4
+              },
+              "integer": {
+                "size": 4,
+                "alignment": 4
+              },
+              "size": {
+                "size": 4,
+                "alignment": 4
+              },
+              "char": {
+                "size": 1,
+                "alignment": 1
+              },
+              "i64": {
+                "size": 8,
+                "alignment": 8
+              },
+              "i32": {
+                "size": 4,
+                "alignment": 4
+              },
+              "i16": {
+                "size": 2,
+                "alignment": 2
+              },
+              "i8": {
+                "size": 1,
+                "alignment": 1
+              },
+              "f64": {
+                "size": 8,
+                "alignment": 8
+              },
+              "f32": {
+                "size": 4,
+                "alignment": 4
+              },
+              "f16": {
+                "size": 2,
+                "alignment": 2
+              }
+            }
+          }
+        ],
+        "drivers": {
+          "vulkan": {
+            "layers": [
+              {
+                "name": "VK_LAYER_KHRONOS_validation",
+                "extensions": [
+                  "VK_EXT_debug_report",
+                  "VK_EXT_debug_utils"
+                ]
+              },
+              {
+                "name": "DebugMarker"
+              },
+              {
+                "name": "MemoryTracker"
+              },
+              {
+                "name": "CPUTiming"
+              }
+            ],
+            "icd_and_implicit_layer_extensions": [
+              "VK_KHR_surface",
+              "VK_KHR_android_surface",
+              "VK_EXT_swapchain_colorspace",
+              "VK_KHR_get_surface_capabilities2",
+              "VK_KHR_external_fence_capabilities",
+              "VK_KHR_external_memory_capabilities",
+              "VK_KHR_external_semaphore_capabilities",
+              "VK_KHR_get_physical_device_properties2",
+              "VK_EXT_debug_report"
+            ],
+            "physical_devices": [
+              {
+                "api_version": 4198485,
+                "driver_version": 1753219072,
+                "vendor_id": 4318,
+                "device_id": 2464875479,
+                "device_name": "NVIDIA Tegra X1 (rev B) (nvgpu)"
+              }
+            ]
+          }
+        },
+        "perfetto_capability": {
+          "vulkan_profile_layers": {
+            "cpu_timing": true
+          },
+          "can_specify_atrace_apps": true
+        }
+      }
+    }
+  }
+]
