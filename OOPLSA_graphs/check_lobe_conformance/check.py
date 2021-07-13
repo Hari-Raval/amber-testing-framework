@@ -1,33 +1,27 @@
 import os
-import pdb
+import sys
 import re
+import pdb
 
-base_path = "../../Driver_and_Comparator_Results/"
-base_path2 = "../../extra_results/"
+empirical_base_path = "../../empirical_results/"
+formal_base_path = "../../Driver_and_Comparator_Results/"
 
-
-devices = ["GeForce 940M", "Quadro RTX 4000", "A14", "A12", "Mali-G77", "Adreno 620", "Tegra X1", "Intel HD620"]
+devices = ["GeForce 940M", "Quadro RTX 4000", "A14", "A12", "Intel HD620", "Mali-G77", "Adreno 620", "Tegra X1"]
 
 device_alias = {"Quadro RTX 4000": "CUDA/toucan_quadro_rtx4000-inter-workgroup.csv",
                 "GeForce 940M" : "CUDA/laptop_940m-inter-workgroup.csv",
                 "A14" : "Apple/iphone_12_a14-inter-workgroup.csv",
                 "A12" : "Apple/ipad_air_3_a12-inter-workgroup.csv",
-                "Mali-G77": "galaxy-s20-mali-2021-02-07",
-                "Adreno 620" : "pixel5-adreno-2021-02-06",
-                "Tegra X1" : "results-NVIDIA-SHIELD-Android-TV",
-                "Intel HD620": "intelHD620-2021-03-16"}
+                "Mali-G77": "Vulkan/galaxy-s20-mali-2021-02-07.csv",
+                "Adreno 620" : "Vulkan/pixel5-adreno-2021-02-06.csv",
+                "Tegra X1" : "Vulkan/results-NVIDIA-SHIELD-Android-TV.csv",
+                "Intel HD620": "Vulkan/intelHD620-2021-03-16.csv"}
 
 config = ["2_thread_2_instruction",
           "2_thread_3_instruction",
           "2_thread_4_instruction",
           "3_thread_3_instruction",
           "3_thread_4_instruction"]
-
-config_alias = {"2_thread_2_instruction" : "output0",
-                "2_thread_3_instruction" : "output1",
-                "2_thread_4_instruction" : "output2",
-                "3_thread_3_instruction" : "output3",
-                "3_thread_4_instruction" : "output4"}
 
 def get_data(fname):
     f = open(fname, 'r')
@@ -37,7 +31,7 @@ def get_data(fname):
 
 def find_ff_d_tests(c):
     ret = []
-    p = os.path.join(base_path,c,"schedulers/LOBE_results.csv")
+    p = os.path.join(formal_base_path,c,"schedulers/LOBE_results.csv")
     data = get_data(p).split("\n")[1:-2]
     for t in data:
         if "P" in t:
@@ -60,15 +54,8 @@ def check_res(res):
     return "P",res
 
 def get_csv_path(d,c):
-    if d in ["Quadro RTX 4000", "A14", "A12","GeForce 940M"]:
-        da = device_alias[d]
-        return os.path.join(base_path,c,da)
-    else:
-        da = device_alias[d]
-        dr = config_alias[c]
-        # maybe name has different date for different chips?
-        fname = "iteration_based_final_results.csv"
-        return os.path.join(base_path2,da,dr,fname)
+    da = device_alias[d]
+    return os.path.join(empirical_base_path,c,da)
 
 def split_d(d):
     d = d.split("\n")
@@ -78,7 +65,15 @@ def split_d(d):
     assert("Test File" in d[0])
     return d[1:-1]
 
+verbose = False
+if "-v" in sys.argv:
+    verbose = True
+
+def pp_status(s):
+    return s.replace("P","0").replace("(","").replace(")","").replace(" ","").replace("F","")
+
 for d in devices:
+    print("Checking device:",d)
     fn = 0
     for c in config:
         r = find_ff_d_tests(c)
@@ -89,13 +84,27 @@ for d in devices:
         for t in r:
             v,vv = check_res(data[t])
             if v in ["F"]:
-                print("found fail",c,t,d,vv)
+                if verbose:
+                    print("found failed test")
+                    print("config:",c)
+                    print("id:",t)
+                    print("plain fails:",pp_status(vv[0]))
+                    print("round-robin fails:",pp_status(vv[1]))
+                    print("chunked failes:", pp_status(vv[2]))
+                    print("--")
                 fn += 1
                 #assert(False)
                 #if v == "P":
                 #print("passed:",c,d,t)
                 #if v == "D":
                 #c_d += 1
-    print("device failed count:", d,fn)
+    if fn == 0:
+        print("passed LOBE conformance")
+    else:
+        print("FAILED LOBE conformance")
+        print("Failed tests:", fn)
+        print("Run with command line arg -v to see tests")
+    print("------------")
+    #print("device failed count:", d,fn)
 
 
