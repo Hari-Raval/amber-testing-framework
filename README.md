@@ -10,7 +10,7 @@ description of a progress test and coverts it to an executable test. In this com
 
 The published work associated with this repository can be found [here](https://dl.acm.org/doi/abs/10.1145/3485508?af=R) and has been accepted to OOPSLA.
 
-## Running the scripts:
+## Running the scripts
 
 amber_test_generation.py script: `python3 amber_test_generation.py input_file output_file_name`
 
