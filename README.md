@@ -9,7 +9,7 @@ reliably fail more tests than others, showing the importance of a portable testi
 
 ## Publication
 
-The published work associated with this repository can be found (here) (https://dl.acm.org/doi/abs/10.1145/3485508?af=R)
+The published work associated with this repository can be found [here](https://dl.acm.org/doi/abs/10.1145/3485508?af=R) and has been accepted to OOPSLA.
 
 ## Running the scripts:
 
