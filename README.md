@@ -1,27 +1,13 @@
-# Amber-Testing-Framework
+## Amber-Testing-Framework
 This repository contains scripts to automatically generate Amber tests for formatted input files along with examples of test cases and sample outputs
 
-# # Repository Organization:
+## Overview
 
-Amber_2_Thread_2_Instruction_2_instruction_Tests: 
-
-- Contains subdirectories of 2 thread, 2 instruction tests labeled according to the test number. Each subdirectory contains the .txt file and associated amber tests
-
-Amber_2_Thread_2_Instruction_3_instruction_Tests:
-
-- Contains subdirectories of 2 thread, 3 instruction tests labeled according to the test number. Each subdirectory contains the .txt file and associated amber tests
-
-Amber_Driver_Results:
-
-- Contains subdirectories of the results from the amber_test_driver.py script. Each subdirectory contains the .txt and .csv output tables
-
-Input_Files: 
-
-- Contains subdirectories of the input .txt files necessary to run the scripts with
+In summary, the contributions of this work include creating a compiler that takes in a high-level
+description of a progress test and coverts it to an executable test. In this compiler, we provide two heuristics that aim to saturate a GPU’s resources and thus, reveal more interesting behaviors. The compiler also includes three configurations that test different levels of the GPU execution hierarchy. In addition to this compiler, we create a driver that executes many of the tests we produce and moreover gracefully recovers from an assortment of erratic timeout behaviors observed in our testing campaign. We evaluate our tools by running over 700 tests across multiple GPUs from different vendors such as AMD, Intel, and Nvidia as well as a GPU emulator (Swiftshader), which is executed on a CPU.
 
 
-
-# # Running the scripts:
+## Running the scripts:
 
 amber_test_generation.py script: `python3 amber_test_generation.py input_file output_file_name`
 
