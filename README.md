@@ -1,4 +1,4 @@
-## Amber-Testing-Framework
+## Amber Testing Framework
 This repository contains scripts to automatically generate Amber tests for formatted input files along with examples of test cases and sample outputs
 
 ## Overview
